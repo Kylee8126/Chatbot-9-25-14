@@ -8,9 +8,7 @@ public class Chatbot
 	/**
 	 * Creates a Chatbot object with a specified name Initializes the total
 	 * chats 0.
-	 * 
-	 * @param name
-	 *            The name of the chatbot.
+	 * @param name  The name of the chatbot.
 	 */
 	public Chatbot(String name)
 	{
@@ -30,7 +28,6 @@ public class Chatbot
 
 	/**
 	 * Gets percise number of chats or messages for user.
-	 * 
 	 * @return
 	 */
 	public int getNumberOfChats()
@@ -40,8 +37,7 @@ public class Chatbot
 
 	/**
 	 * Gets this SetName for user.
-	 * 
-	 * @param name
+	 * @param name The new name for the Chatbot.
 	 */
 	public void setName(String name)
 	{
@@ -58,7 +54,6 @@ public class Chatbot
 
 	/**
 	 * Checks if user is ready to quit by their input.
-	 * 
 	 * @param input
 	 * @return
 	 */
@@ -66,7 +61,7 @@ public class Chatbot
 	{
 		boolean okToQuit = false;
 
-		if (input.equals("Goodbye"))
+		if (input != null && (input.equalsIgnoreCase("Goodbye") || input.equalsIgnoreCase("No") || input.equalsIgnoreCase ("super no") || input.equalsIgnoreCase ("Super nope") || input.equalsIgnoreCase ("nah")))
 		{
 			okToQuit = true;
 		}
