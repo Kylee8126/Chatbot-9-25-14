@@ -1,6 +1,7 @@
 package chatbot.controller;
 
 import javax.swing.JOptionPane;
+
 import chatbot.model.Chatbot;
 import chatbot.view.ChatbotView;
 /**
@@ -65,7 +66,20 @@ public class ChatbotAppController
 	 */
 	private void quit ()
 	{
+		int randomExitMessage = (int)(Math.random() * 3);
+		if (randomExitMessage == 0)
+		 {
+			appView.displayInformation("Peace Bruh");
+		 }
+		else if (randomExitMessage == 1)
+		{
+			appView.displayInformation("Have a good day to ya!");
+		}
+		else if (randomExitMessage == 2)
+		{
 		appView.displayInformation("Bye user.");
+		}
 		System.exit(0);
+		
 	}
 }

@@ -90,21 +90,46 @@ public class Chatbot
 		String processedText = "";
 		incrementChats();
 		
-		if(memeChecker(userText))
+		int randomChoice = (int)(Math.random() * 3);
+		
+		if (randomChoice == 0)
 		{
-			processedText = "Hey, you found a meme: " + userText;
-			processedText += "isn't that fancy.";
+			if(stringChecker(userText))
+			{
+				processedText = "Woah man, I know I'm a chat bot.. but you're getting a little too chatty.";
+			}
 			
 		}
-		else
+		else if (randomChoice == 1)
 		{
-			processedText = "Boring, that wasn't really a meme.";	
+			if(contentChecker(userText))
+			{
+				processedText = "Dude I love " + userText + " you're freaking rad!";
+			}
 		}
-		
+		else 
+			
+		{
+			
+			if(memeChecker(userText))
+			{
+				processedText = "Hey, you found a meme: " + userText;
+				processedText += "isn't that fancy.";
+			
+			}
+			else
+			{
+				processedText = "Boring, that wasn't really a meme.";	
+			}
+		}
 		
 		return processedText;
 	}
-	
+	/**
+	 * Checks the string to see if it is a meme.
+	 * @param currentText
+	 * @return
+	 */
 	private boolean memeChecker(String currentText)
 	{
 		boolean isAMeme = false;
@@ -116,15 +141,6 @@ public class Chatbot
 				isAMeme = true;
 			}
 		}
-		
-		for(int loopCount = 0; loopCount < memeList.size(); loopCount++)
-		{
-			if(memeList.get(loopCount).equalsIgnoreCase(currentText))
-			{
-				isAMeme= true;
-			}
-		}
-		
 		
 		return isAMeme;
 	}
@@ -138,26 +154,45 @@ public class Chatbot
 	{
 		boolean okToQuit = false;
 
-		if (input != null && (input.equalsIgnoreCase("Goodbye") || input.equalsIgnoreCase("No") || input.equalsIgnoreCase ("super no") || input.equalsIgnoreCase ("Super nope") || input.equalsIgnoreCase ("nah")))
+		if (input != null && (input.equalsIgnoreCase("Goodbye") || input.equalsIgnoreCase("No") || input.equalsIgnoreCase ("super no") || input.equalsIgnoreCase ("Super nope") || input.equalsIgnoreCase ("nah") || input.equalsIgnoreCase("Bye")))
 		{
 			okToQuit = true;
 		}
 
 		return okToQuit;
 	}
-
-	public int stringChecker()
+	/**
+	 * Checks the string length to see if it is less than 35 characters. 
+	 * @param lengthText
+	 * @return
+	 */
+	private boolean stringChecker(String input)
 	{
-		boolean 
-		return stringChecker();
+		boolean stringChecker = false;
 		
-	
+		if (input.length() >= 35 )
+		{
+			stringChecker = true;
+		}
+		else 
+		{
+			stringChecker = false;
+		}
+		return stringChecker;
 	}
+	/**
+	 * Checks if the supplied String contains the content of the chatbot.
+	 * @param input Input content checker.
+	 * @return ContentChecker.
+	 */
 	public boolean contentChecker(String input)
 	{
-		return contentChecker(input);
-		
-		
+		boolean hasMyContent = false;
+		if(input.contains("Hayley Williams")|| input.toLowerCase().contains("Paramore".toLowerCase()) || input.toLowerCase().contains("We are the in crowd".toLowerCase()) || input.toLowerCase().contains("Tay Jardine".toLowerCase()))
+		{
+			hasMyContent = true;
+		}
+		return hasMyContent;
 	}
 	
 }
