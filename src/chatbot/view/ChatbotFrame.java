@@ -29,7 +29,7 @@ public class ChatbotFrame extends JFrame
 		this.setLocation(67, 67);
 		this.setSize(455, 400);
 		this.setVisible(true);
-		this.setResizable(false);
+		this.setResizable(true);
 	}
 	
 }

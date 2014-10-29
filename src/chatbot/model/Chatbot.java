@@ -90,7 +90,7 @@ public class Chatbot
 		String processedText = "";
 		incrementChats();
 		
-		int randomChoice = (int)(Math.random() * 3);
+		int randomChoice = (int)(Math.random() * 4);
 		
 		if (randomChoice == 0)
 		{
@@ -106,11 +106,15 @@ public class Chatbot
 			{
 				processedText = "Dude I love " + userText + " you're freaking rad!";
 			}
+			else if(korraChecker(userText))
+			{
+				processedText = "Ah yes " + userText + "! What did you think about book 4?";
+			}
+		
 		}
-		else 
+		else if(randomChoice == 2)
 			
 		{
-			
 			if(memeChecker(userText))
 			{
 				processedText = "Hey, you found a meme: " + userText;
@@ -121,6 +125,10 @@ public class Chatbot
 			{
 				processedText = "Boring, that wasn't really a meme.";	
 			}
+		}
+		else if(randomChoice == 3)
+		{
+			
 		}
 		
 		return processedText;
@@ -188,11 +196,23 @@ public class Chatbot
 	public boolean contentChecker(String input)
 	{
 		boolean hasMyContent = false;
-		if(input.contains("Hayley Williams")|| input.toLowerCase().contains("Paramore".toLowerCase()) || input.toLowerCase().contains("We are the in crowd".toLowerCase()) || input.toLowerCase().contains("Tay Jardine".toLowerCase()))
+		if(input.toLowerCase().contains("Hayley Williams")|| input.toLowerCase().contains("Paramore".toLowerCase()) || input.toLowerCase().contains("We are the in crowd".toLowerCase()) || input.toLowerCase().contains("Tay Jardine".toLowerCase()) || input.contains("Korra") || input.contains("The legend of Korra") || input.toLowerCase().contains("Mako"))
 		{
 			hasMyContent = true;
 		}
 		return hasMyContent;
+			
+	}
+	
+	private boolean korraChecker(String input)
+	{
+		boolean hasMyKorra = false;
+		if(input.toLowerCase().contains("Korra") || input.toLowerCase().contains("Naga") || input.toLowerCase().contains("Bolin"))
+		{
+			hasMyKorra = true;	
+		}
+		
+		return hasMyKorra;
 	}
 	
 }

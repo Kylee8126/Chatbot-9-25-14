@@ -60,13 +60,13 @@ public class ChatbotAppController
 	{
 		String message = appView.displayChatbotConversations(startMessage);
 		
-//		while(!notSoCleverBot.quitChecker(message))
-//		{
-//			message = notSoCleverBot.processText(message);
-//			message = appView.displayChatbotConversations(message);
-//		}
-//		
-//		quit();
+		while(!notSoCleverBot.quitChecker(message))
+		{
+			message = notSoCleverBot.processText(message);
+			message = appView.displayChatbotConversations(message);
+		}
+		
+		quit();
 	}
 	
 	/**
@@ -74,7 +74,7 @@ public class ChatbotAppController
 	 */
 	private void quit ()
 	{
-		int randomExitMessage = (int)(Math.random() * 3);
+		int randomExitMessage = (int)(Math.random() * 6);
 		if (randomExitMessage == 0)
 		 {
 			appView.displayInformation("Peace Bruh");
