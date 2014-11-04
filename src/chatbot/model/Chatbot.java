@@ -17,6 +17,8 @@ public class Chatbot
 	 */
 	private ArrayList <String> memeList;
 	
+	private UserInfo myUser;
+	
 	/**
 	 * Creates a Chatbot object with a specified name Initializes the total
 	 * chats 0. Fills the memeList.
@@ -90,8 +92,12 @@ public class Chatbot
 		String processedText = "";
 		incrementChats();
 		
-		int randomChoice = (int)(Math.random() * 4);
+		int randomChoice = (int)(Math.random() *5);
 		
+		if(numberOfChats < 10)
+		{
+			//you will need to use some if's or a switch
+		}
 		if (randomChoice == 0)
 		{
 			if(stringChecker(userText))
@@ -108,7 +114,7 @@ public class Chatbot
 			}
 			else if(korraChecker(userText))
 			{
-				processedText = "Ah yes " + userText + "! What did you think about book 4?";
+				processedText = "Ah yes " + userText + "! Avatar! What did you think about book 4?";
 			}
 		
 		}
@@ -201,13 +207,23 @@ public class Chatbot
 			hasMyContent = true;
 		}
 		return hasMyContent;
+	
 			
 	}
-	
+	/**
+	 * Checks if the supplied String contains the content listed in Korra checker.
+	 * @param input Input korra Checker.
+	 * @return KorraChecker.
+	 */
 	private boolean korraChecker(String input)
 	{
 		boolean hasMyKorra = false;
-		if(input.toLowerCase().contains("Korra") || input.toLowerCase().contains("Naga") || input.toLowerCase().contains("Bolin"))
+		if(input.toLowerCase().contains("Korra") || input.toLowerCase().contains("Naga") || input.toLowerCase().contains("Bolin") || input.toLowerCase().contains("Opal") || input.toLowerCase().contains("opal and bolin") || input.toLowerCase().contains("Jinora") || input.toLowerCase().contains("Kai") || input.toLowerCase().contains("Jinora and Kai") || input.toLowerCase().contains("Amon") || input.toLowerCase().contains("freedom fighters") || input.toLowerCase().contains("triad") || input.toLowerCase().contains("triple threat triad") || input.toLowerCase().contains("hermonic convergience") || input.toLowerCase().contains("vaatu") || 
+		   input.toLowerCase().contains("wan") || input.toLowerCase().contains("raava") ||  input.toLowerCase().contains("avatar") ||   input.toLowerCase().contains("tonraq") || input.toLowerCase().contains("Varrick") || input.toLowerCase().contains("Asami") || input.toLowerCase().contains("future industries") || input.toLowerCase().contains("Lin") || input.toLowerCase().contains("Beifong") || input.toLowerCase().contains("Toph") || input.toLowerCase().contains("Aang") ||input.toLowerCase().contains("Varrick") || input.toLowerCase().contains("Sato") ||  input.toLowerCase().contains("Tenzin") || input.toLowerCase().contains("Tarrlok") ||
+		   input.toLowerCase().contains("Shiro Shinobi") || input.toLowerCase().contains("Saikhan") || input.toLowerCase().contains("metal clan") || input.toLowerCase().contains("hiroshi sato") || input.toLowerCase().contains("Pabu") || input.toLowerCase().contains("Ikki") || input.toLowerCase().contains("Eska") || input.toLowerCase().contains("Desna") || input.toLowerCase().contains("Kya") || input.toLowerCase().contains("Bumi") || input.toLowerCase().contains("Pema") || input.toLowerCase().contains("Senna") || input.toLowerCase().contains("Mako") ||
+		   input.toLowerCase().contains("Water benders") ||  input.toLowerCase().contains("water bending") ||  input.toLowerCase().contains("water bender") ||  input.toLowerCase().contains("water bender's") || input.toLowerCase().contains("water bended") || input.toLowerCase().contains("water bend") || 
+		   input.toLowerCase().contains("Fire benders") || input.toLowerCase().contains("fire bender") || input.toLowerCase().contains("fire bender's") || input.toLowerCase().contains("fire bending") || input.toLowerCase().contains("fire benders") || input.toLowerCase().contains("fire bended") || input.toLowerCase().contains("fire bend") || input.toLowerCase().contains("eath bend") || input.toLowerCase().contains("earth bender") || input.toLowerCase().contains("earth bender's") || input.toLowerCase().contains("earth benders") ||
+		   input.toLowerCase().contains("earth bending") || input.toLowerCase().contains("earth bended") || input.toLowerCase().contains("air bend") || input.toLowerCase().contains("air bender") || input.toLowerCase().contains("air benders") ||input.toLowerCase().contains("air bender's") || input.toLowerCase().contains("air bending") ||input.toLowerCase().contains("air bended") || input.toLowerCase().contains("air nomads") ||input.toLowerCase().contains("air nomad's") ||input.toLowerCase().contains("air nomad") || input.toLowerCase().contains("fire nation") || input.toLowerCase().contains("earth kingdom")|| input.toLowerCase().contains("water tribe"))
 		{
 			hasMyKorra = true;	
 		}

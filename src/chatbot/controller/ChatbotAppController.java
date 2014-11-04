@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import chatbot.model.Chatbot;
 import chatbot.view.ChatbotFrame;
+import chatbot.view.ChatbotPanel;
 import chatbot.view.ChatbotView;
 /**
  * Application Controller for the Chatbot String manipulation project. Responsible for controlling the View and Model packages.
@@ -40,8 +41,8 @@ public class ChatbotAppController
 	{
 		appView = new ChatbotView(this);
 		baseFrame = new ChatbotFrame(this);
-		notSoCleverBot = new Chatbot(" Mr. not so clever ");
-		startMessage = "Welcome to the" + notSoCleverBot.getName() + " Chatbot, type your name here.";
+		notSoCleverBot = new Chatbot(" Chatty Patty ");
+		startMessage = "Welcome to the" + notSoCleverBot.getName() + " Chatbot, type your name.";
 	}
 	
 	/**
@@ -58,15 +59,20 @@ public class ChatbotAppController
 	 */
 	public void start()
 	{
-		String message = appView.displayChatbotConversations(startMessage);
 		
-		while(!notSoCleverBot.quitChecker(message))
-		{
-			message = notSoCleverBot.processText(message);
-			message = appView.displayChatbotConversations(message);
-		}
+		ChatbotPanel myAppPanel = (ChatbotPanel) baseFrame.getContentPane();
+		myAppPanel.displayTextToUser(startMessage);
 		
-		quit();
+//		((ChatbotPanel) baseFrame.getContentPane()).displayTextToUser(startMessage);
+		
+	}
+	
+	public String sendTextToChatbot(String userInput)
+	{
+		String respondText = "";
+		
+		respondText = notSoCleverBot.processText(userInput);
+		return respondText;
 	}
 	
 	/**
