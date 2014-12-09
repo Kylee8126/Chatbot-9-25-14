@@ -31,11 +31,25 @@ public class ChatbotPanel extends JPanel
 	 * This is the Text field constructor.
 	 */
 	private JButton randomButton;
+	/**
+	 * This is the JSpinner constructor.
+	 */
 	private JSpinner firstSpinner;
+	/*
+	 * This is the constructor sample field.
+	 */
 	private JTextField sampleField;
+	/**
+	 * This constructs the chat pane.
+	 */
 	private JScrollPane chatPane;
+	/**
+	 * this constructs the chat area.
+	 */
 	private JTextArea chatArea;
-
+	/**
+	 * This constructs the base layout.
+	 */
 	private SpringLayout baseLayout;
 	/**
 	 * The constructor for the base controller.
@@ -80,10 +94,14 @@ public class ChatbotPanel extends JPanel
 		setupListeners();
 		setupScrollpane();
 	}
+	/*
+	 * This is where the scroll pane is created. 
+	 */
 	private void setupScrollpane()
 	{
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
+		chatArea.setEditable(false);
 	}
 	/**
 	 *This gives the information to how the window looks.
@@ -99,7 +117,7 @@ public class ChatbotPanel extends JPanel
 		this.add(randomButton);
 		this.add(firstSpinner);
 		
-		JLabel lblNewLabel = new JLabel("beta 1.2.0");
+		JLabel lblNewLabel =  new JLabel("beta 1.4.0");
 		baseLayout.putConstraint(SpringLayout.NORTH, sampleButton, -4, SpringLayout.NORTH, lblNewLabel);
 		baseLayout.putConstraint(SpringLayout.EAST, sampleButton, -62, SpringLayout.WEST, lblNewLabel);
 		lblNewLabel.setForeground(Color.WHITE);
@@ -143,7 +161,9 @@ public class ChatbotPanel extends JPanel
 		
 		randomButton.addActionListener(new ActionListener()
 		{
-
+			/*
+			 *  This sets up what happens when you click the button.
+			 */
 			public void actionPerformed(ActionEvent click)
 			{
 				sampleField.setText(sampleField.getText() + " Hey man, don't push my buttons. ");
@@ -152,6 +172,10 @@ public class ChatbotPanel extends JPanel
 		});
 			
 	}
+	/**
+	 * Displays the text to the user within the correct frame.
+	 * @param input User input text area.
+	 */
 	public void displayTextToUser(String input)
 	{
 		chatArea.append("\n" + input);

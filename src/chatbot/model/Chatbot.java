@@ -1,7 +1,10 @@
 package chatbot.model;
 
 import java.util.ArrayList;
-
+/*
+ * @author Kylee Christensen
+ * version 2.0.3
+ */
 public class Chatbot
 {
 	/**
@@ -16,8 +19,14 @@ public class Chatbot
 	 * Constructor for the meme list.
 	 */
 	private ArrayList <String> memeList;
-	
+    /**
+     * constructor for User info.
+     */
 	private UserInfo myUser;
+	/**
+	 * Constructs the array list.
+	 */
+	private ArrayList<String> userInputList;
 	
 	/**
 	 * Creates a Chatbot object with a specified name Initializes the total
@@ -31,6 +40,9 @@ public class Chatbot
 		
 		memeList = new ArrayList <String>();
 		fillTheMemeList();
+		
+		myUser = new UserInfo();
+		userInputList = new ArrayList<String>();
 	}
 
 	/**
@@ -90,14 +102,58 @@ public class Chatbot
 	public String processText(String userText)
 	{
 		String processedText = "";
-		incrementChats();
 		
-		int randomChoice = (int)(Math.random() *5);
 		
-		if(numberOfChats < 10)
+		int randomChoice = (int)(Math.random() *7);
+		
+		if (userText != null)
 		{
-			//you will need to use some if's or a switch
+		if(numberOfChats < 4)
+		{
+			{
+				if(numberOfChats == 0)
+				{
+			
+					myUser.setUserName(userText);
+					processedText = "Hello " +myUser.getUserName() + ". How old are you?";
+					
+				}
+				else if(numberOfChats == 1)
+				{
+					int age = Integer.parseInt(userText);
+					myUser.setAgeNumber(age, age);
+					processedText = "Man, you are " +myUser.getAgeNumber() + " years old? That is really old for someone named " +myUser.getUserName()+ ".";
+					processedText += "Do you like The Legend Of Korra?";
+				}
+				else if(numberOfChats == 2)
+				{
+					if(userText.equalsIgnoreCase("Yeah") || userText.equalsIgnoreCase("Yes") || userText.equalsIgnoreCase("of course"))
+					{
+						myUser.setLikesKorra(true);
+						processedText = "you are freaking awesome, how about paramore? Do you like paramore?";
+					}
+					else
+					{
+						myUser.setLikesKorra(false);
+						processedText = "Well then.. Do you like Paramore?";
+					}
+				}
+				else if(numberOfChats == 3)
+				{
+					if(userText.equalsIgnoreCase("sure") || userText.equalsIgnoreCase("yeah") || userText.equalsIgnoreCase("yes"))
+					{
+						myUser.setLikesParamore(true);
+						processedText = "Oh, nice";
+					}
+					else
+					{
+						myUser.setLikesParamore(false);
+						processedText = "Oh, okay";
+					}
+				}
+			}
 		}
+		else
 		if (randomChoice == 0)
 		{
 			if(stringChecker(userText))
@@ -134,9 +190,55 @@ public class Chatbot
 		}
 		else if(randomChoice == 3)
 		{
-			
+			userInputList.add(0, userText);
+			processedText = "I'll remember this," +myUser.getUserName() + ".";
 		}
 		
+		else if(randomChoice == 4)
+		{
+			if(userInputChecker(userText))
+			{
+				processedText = "Okay, dude, I know.";
+			}
+			else 
+			{
+				processedText = "Oh, this is new to me!";
+			}
+		}
+		
+		else if (randomChoice == 5)
+		{
+			if(userInputChecker(userText))
+			{
+				processedText = "Yikes you knew what you said before!";
+			}
+			else
+			{
+				processedText = "I don't think I have heard that before";
+			}
+		}
+		else 
+			if(randomChoice == 6)
+			{
+				if(chatbotNameChecker(userText))
+				{
+					processedText = chatbotNameConvesation(userText);
+			 
+				}
+				else
+				{
+					processedText = noNameConvsersation(userText);
+				}
+			}
+				else
+				{
+					 numberOfChats--;
+					  processedText = "Anser the question!";
+				}
+			
+		}
+	
+		incrementChats();
 		return processedText;
 	}
 	/**
@@ -230,5 +332,71 @@ public class Chatbot
 		
 		return hasMyKorra;
 	}
+	/**
+	 * checks if user says the name
+	 * @param currentInput
+	 * @return has the name in the string.
+	 */
+	private boolean chatbotNameChecker(String currentInput)
+	{
+		boolean hasNameInString = false;
+		
+		if(currentInput.indexOf(this.getName()) > -1)
+		{
+			hasNameInString = true;
+		}
+		
+		return hasNameInString;
 	
+	}
+	/**
+	 * This implements naming the conversation of the current input
+	 * @param currentInput
+	 * @return
+	 */
+	private String chatbotNameConvesation(String currentInput)
+	{
+		String nameConvsersation = "This is what you typed after my name: ";
+		
+		nameConvsersation += currentInput.substring(currentInput.indexOf(this.getName()) + this.getName().length(), currentInput.length() -1);
+		
+		
+		return nameConvsersation;
+	}
+	private String noNameConvsersation(String currentInput)
+	{
+		String notNamed ="";
+		int smallRandom  = (int) (Math.random()* currentInput.length() /2);
+		int largerRandom =(int) (smallRandom + (Math.random()* (currentInput.length() / 2)) + 1);
+		
+		notNamed = "You didn't say my name so here is a special phrase:" + currentInput.substring(smallRandom, largerRandom);
+		
+		return notNamed;
+		
+	}
+	
+	
+	/**
+	 * This is the user input checker for loops!
+	 * @param input loops.
+	 * @return the loops.
+	 */
+	private boolean userInputChecker(String input)
+	{
+		boolean matchesInput = false;
+		
+		if(userInputList.size() > 0)
+		{
+			for(int loopCount = 0; loopCount < userInputList.size(); loopCount++)
+			{
+				if(input.equalsIgnoreCase(userInputList.get(loopCount)))
+				{
+					matchesInput = true;
+					userInputList.remove(loopCount);
+					loopCount--;
+				}
+			}
+		}
+		return matchesInput;
+	}
 }

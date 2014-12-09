@@ -9,7 +9,7 @@ import chatbot.view.ChatbotView;
 /**
  * Application Controller for the Chatbot String manipulation project. Responsible for controlling the View and Model packages.
  * @author kchr8126 Kylee Christensen
- * @version 1.1 10/1/14
+ * @version 1.4.8 11/4/14 - added reference to user in processedText and constructor.
  */
 public class ChatbotAppController
 {  

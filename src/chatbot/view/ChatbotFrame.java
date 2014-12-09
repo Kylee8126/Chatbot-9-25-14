@@ -3,7 +3,9 @@ package chatbot.view;
 import javax.swing.JFrame;
 
 import chatbot.controller.ChatbotAppController;
-
+/*
+ * @author Kylee C
+ */
 public class ChatbotFrame extends JFrame
 {
     /**
